@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<h:head>
+	<title>reCOVER</title>
+
+	<!-- estilo da aplicação -->
+	<link href="./resources/css/style.css" rel="stylesheet" />
+
+</h:head>
+
+<h:body>
+
+	<div class="main">
+		<div class="header">
+			<div class="logo">
+				<h1>
+					<span>
+						<h:outputLink value="index.xhtml" target="_self">reCOVER</h:outputLink>
+					</span><small>Communalities and Variabilities
+						Extraction</small>
+				</h1>
+			</div>
+		</div>
+		<div class="clr"></div>
+		<DIV class="content">
+
+			<h:form id="form" enctype="multipart/form-data">
+	
+		
+				Nomes a serem exibidos para cada projeto:
+				
+				<h:dataTable value="#{loadProjects.apps}" var="app" border="1"
+							cellpadding="2">
+
+					<f:facet name="header"> Projetos carregados </f:facet>
+
+					<h:column>
+						<f:facet name="header"> Arquivo </f:facet>
+						<h:outputText value="#{app.fileApplicationName}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header"> Nome </f:facet>
+						<h:inputText value="#{app.nameToDisplay}" required="true"
+							disabled="true" label="Nome do projeto">
+							<f:validateLength minimum="1" maximum="13" />
+
+						</h:inputText>
+					</h:column>
+				</h:dataTable>
+				<br />
+				<h:messages style="color:red" />
+
+				<br />
+
+				<h:panelGrid columns="2">
+
+					<label for="src">src:</label>
+					<h:inputText id="src" value="#{loadProjects.src}" />
+
+					<label for="limiar">Limiar do pacote:</label>
+					<h:inputText id="limiar" value="#{loadProjects.limiarPackage}" />
+
+				</h:panelGrid>
+
+				<br />
+				
+				<h:commandButton id="buttonGenerate" value="Gerar Árvore"
+					action="#{loadProjects.regenerateTree}" />
+
+			</h:form>
+
+		</DIV>
+	</div>
+
+</h:body>
+</html>

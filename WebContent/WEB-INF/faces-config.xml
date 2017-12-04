@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config
+    xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
+    version="2.2">
+
+	<factory>
+    	<exception-handler-factory>exceptions.MyExceptionHandlerFactory</exception-handler-factory>
+	</factory>
+
+	<application>
+		<message-bundle>
+			resources.Messages
+		</message-bundle>
+	</application>
+
+	<navigation-rule>
+		<from-view-id>editProjects.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>#{loadProjects.generateTree}</from-outcome>
+			<to-view-id>results.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+</faces-config>

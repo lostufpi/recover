@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<h:head>
+	<title>reCOVER</title>
+	<link rel="stylesheet"
+		href="./resources/assets/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet"
+		href="./resources/assets/dist/themes/default/style.min.css" />
+
+	<!-- estilo da aplicação -->
+	<link href="./resources/css/style.css" rel="stylesheet" type="text/css" />
+
+	<script>
+		window.$q = [];
+		window.$ = window.jQuery = function(a) {
+			window.$q.push(a);
+		};
+	</script>
+
+</h:head>
+
+<h:body>
+
+	<div class="main">
+		<div class="header">
+			<div class="logo">
+				<h1>
+					<span>
+						<h:outputLink value="index.xhtml" target="_self">reCOVER</h:outputLink>
+					</span><small>Communalities and Variabilities
+						ExtRaction</small>
+				</h1>
+			</div>
+		</div>
+		<div class="clr"></div>
+		<DIV class="content">
+
+			<br />
+			
+			<div id="jstree3" class="demo"
+				style="margin-top: 2em; margin-left: 4em">
+			</div>
+			
+			<div class="article">
+				<h:form id="formHCharts">
+
+				<h:inputHidden id="inputSelectedNode"
+					value="#{loadProjects.selectedNode}" />
+				<br />
+				<h:commandButton id="buttonViewComposition"
+					value="Visualizar Composição"
+					action="#{loadProjects.createJsonhighcharts}" style="position: fixed;top: 28%;right: 20%;">
+					<!-- o atributo execute atualiza os atributos do bean -->
+					<f:ajax render="jsonHighcharts titleHighcharts"
+						execute="inputSelectedNode" onevent="verify_drawHC" />
+				</h:commandButton>
+				
+			</h:form>
+			</div>
+				
+			<p:spacer width="20" />
+			<h:outputLabel value="*Nós duplicados." escape="false" />
+
+			<br />
+			<p:spacer width="20" />
+			<h:outputLabel
+				value="Os pacotes são agrupados caso a porcentagem de conteúdo em comum seja igual ou maior ao limiar informado."
+				title="Dois pacotes são agrupados no mesmo nó caso S >= limiar. 
+						Onde S é dado pela razão entre a Quantidade de classes/pacotes comuns e o somatório total da quantidade de classes/pacotes dentro de cada pacote" />
+
+			<br />
+			
+			<br /> <br /> <br />
+			<div id="containerHC"
+				style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto">
+			</div>
+
+			<!-- ver pq esse botão não funciona -->
+			<h:form>
+				<h:commandButton action="alterThreshold" value="Alterar Limiar"/>
+			</h:form>
+
+			<h:outputLabel id="jsonJstree" value="#{loadProjects.jsonJstree}"
+				hidden="true" />
+			<h:outputLabel id="jsonHighcharts"
+				value="#{loadProjects.jsonHighcharts}" />
+			<h:outputLabel id="titleHighcharts"
+				value="#{loadProjects.titleHighcharts}" />
+
+			<h:outputScript library="js" name="projects_jstree.js" />
+		</DIV>
+	</div>
+
+	<script src="./resources/assets/jquery-1.10.2.min.js"></script>
+	<script src="./resources/assets/jquery.address-1.6.js"></script>
+	<script src="./resources/assets/dist/jstree.min.js"></script>
+	<script>
+		$.each($q, function(i, f) {
+			$(f)
+		});
+		$q = null;
+	</script>
+
+	<!-- highcharts -->
+	<script src="./resources/highcharts/highcharts.js"></script>
+	<script src="./resources/highcharts/modules/exporting.js"></script>
+
+
+</h:body>
+</html>

@@ -1,0 +1,11 @@
+=================================================================
+						reCOVER
+=================================================================
+
+Esse é um projeto que possui gerenciamento de dependências utilizando o maven. Parte das dependências estão no arquivo pom.xml.
+As demais encontram-se na pasta lib do projeto. 
+Essas libs fazem parte do próprio eclipse, podendo ser encontradas também na pasta de plugins do eclipse.
+
+O projeto foi desenvolvido utilizando a IDE Eclipse Kepler, Sistema Operacional Windows 10, jdk 1.8 e servidor Apache Tomcat 7.0
+
+Desenvolvido por: Denise Alves da Costa (denise.alvesss@gmail.com)

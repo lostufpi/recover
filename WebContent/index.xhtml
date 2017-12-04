@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<h:head>
+	<title>reCOVER</title>
+
+	<!-- estilo da aplicação -->
+	<link href="./resources/css/style.css" rel="stylesheet"/>
+
+</h:head>
+
+<h:body>
+	<div class="main">
+		<div class="header">
+			<div class="logo">
+				<h1>
+					<span>
+						<h:outputLink value="index.xhtml" target="_self">reCOVER</h:outputLink>
+					</span><small>Communalities and Variabilities ExtRaction</small>
+				</h1>
+			</div>
+		</div>
+		<div class="clr"></div>
+		<DIV class="content">
+
+			<!-- http://www.primefaces.org/showcase/ui/file/upload/single.xhtml -->
+
+			<h:form id="form" enctype="multipart/form-data">
+
+				<h:panelGrid columns="1">
+
+					<h:outputLabel for="uploadProjects" value="Projetos:" />
+
+					<p:fileUpload id="uploadProjects"
+						fileUploadListener="#{loadProjects.handleFileUpload}"
+						mode="advanced" multiple="true" allowTypes="/(\.|\/)(zip)$/"
+						update="names" label="Selecionar..." uploadLabel="Enviar"
+						cancelLabel="Cancelar" oncomplete="showButton()" />
+
+					<h:outputLabel id="names" value="#{loadProjects.names}"
+						escape="false" />
+
+					<p:separator />
+
+				</h:panelGrid>
+				
+
+				<h:commandButton id="buttonLoadProjects" value="Carregar Projetos"
+					action="#{loadProjects.loadProjects}" />
+					
+				<br/>
+				<br/>
+				<h:commandLink action="#{loadProjects.reset}" value="Nova Execução"/>
+			
+			</h:form>
+		</DIV>
+	</div>
+
+		<script type="text/javascript">
+			function showButton() {
+				document.getElementById("form:buttonLoadProjects").style.display = "inline";
+			};
+		</script>
+		<script src="./resources/assets/jquery.address-1.6.js"></script>
+</h:body>
+</html>
